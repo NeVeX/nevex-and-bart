@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+
+<div th:fragment="estimates" >
+    <div th:if="${estimates != null}">
+        <div th:if="${estimates.originStation != null}"> <!-- th:if="${not #lists.isEmpty(estimates.entries)}"> -->
+            <h2 th:text="|${estimates.originStation} Station|">OriginStation</h2>
+            <h3 style="margin-top: 5px" th:each="est : ${estimates.entries}">
+                Next <b th:style="|color: ${est.hexColor}|" th:text="${est.trainName}"></b> train arrives in <b th:style="|color: ${est.hexColor}|" th:text="${est.minutes}"></b> minutes
+            </h3>
+        </div>
+        <!--<div th:if="${estimates.originStation == null}">-->
+            <!--<h2>There are no estimates available - thanks Obama!</h2>-->
+        <!--</div>-->
+    </div>
+</div>
+</body>
+</html>
