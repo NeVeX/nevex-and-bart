@@ -11,8 +11,7 @@ server:
   context-path: /bart
 
 logging:
-  path: ./log/
-  file: nevex-and-bart.log
+  file: log/nevex-and-bart.log
 spring:
   thymeleaf:
     cache: false
