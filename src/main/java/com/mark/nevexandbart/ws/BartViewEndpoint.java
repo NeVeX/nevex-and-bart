@@ -25,18 +25,14 @@ public class BartViewEndpoint {
         this.bartApiService = bartApiService;
     }
 
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(ModelMap model) {
-
         List<StationsDto> stations = this.bartApiService.getStations();
-
         if ( stations != null ) {
             model.addAttribute("all_stations", stations);
         }
         return "welcome";
     }
-
 
     @RequestMapping(value = "/estimates", method = RequestMethod.GET)
     public String getEstimatesWithFragments(HttpServletRequest request, ModelMap map) {

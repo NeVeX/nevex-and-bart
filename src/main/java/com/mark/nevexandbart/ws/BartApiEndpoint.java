@@ -33,7 +33,6 @@ public class BartApiEndpoint {
     public ResponseEntity<List<StationsDto>> getAllStations() {
         List<StationsDto> stations = bartApiService.getStations();
         return ResponseEntity.ok(stations);
-
     }
 
     @RequestMapping(path = "/estimates", params = {"station"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -44,6 +43,5 @@ public class BartApiEndpoint {
         }
         return ResponseEntity.ok().body(bartApiService.getEstimationForStation(station));
     }
-
 
 }

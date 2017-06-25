@@ -1,0 +1,22 @@
+spring.thymeleaf.cache: false
+
+nevex.bart:
+  api-key: MW9S-E7SL-26DU-VV8V
+  api-base-url: http://api.bart.gov/api
+  api-stations-url: ${nevex.bart.api-base-url}/stn.aspx?cmd=stns&key=${nevex.bart.api-key}
+  api-estimatation-url: ${nevex.bart.api-base-url}/etd.aspx?cmd=etd&orig=**ORIG**&key=${nevex.bart.api-key}
+
+server:
+  port: 56565
+  context-path: /bart
+
+logging:
+  path: ./log/
+  file: nevex-and-bart.log
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/
+    mode: HTML5
+    suffix: .html
+
