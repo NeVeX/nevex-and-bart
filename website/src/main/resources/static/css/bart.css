@@ -1,0 +1,25 @@
+
+.main-body {
+    background-image: url(../images/bart_train.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+    text-shadow: 2px 2px 0px #000000;
+
+    background-color:rgba(0, 0, 0, 0.48);
+    margin-top: -15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: -14px;
+    height: 100%;
+}
+
+.input-bart {
+    font-size: 20px;
+    height: 25px;
+}

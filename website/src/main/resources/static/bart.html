@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bart</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link type="text/css" href="css/bart.css">
+        <script src="js/jquery-3.1.0.min.js"></script>
+        <script src="js/bart-control.js"></script>
+    </head>
+
+    <body class="main-body">
+        <div>
+            <h2>O Bart, where art thou?</h2>
+
+            <input class="input-bart" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>
+
+            <datalist id="stations">
+                <!--<option>-->
+                        <!--&lt;!&ndash;th:each="station : ${all_stations}"&ndash;&gt;-->
+                        <!--&lt;!&ndash;th:attr="data-value=${station.abbreviation}"&ndash;&gt;-->
+                        <!--&lt;!&ndash;th:value="${station.stationName}"&ndash;&gt;-->
+
+                <!--</option>-->
+            </datalist>
+
+            <div>
+                <h2 id="origin_station">OriginStation</h2>
+                <div id="all_the_estimates">
+                    <!--<h3>-->
+                        <!--Next <b id="next_train_name_id"></b>-->
+                        <!--train arrives in <b id="train_arrives_id"></b>-->
+                        <!--minutes-->
+                    <!--</h3>-->
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+</html>
