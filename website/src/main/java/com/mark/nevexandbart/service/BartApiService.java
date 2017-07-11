@@ -65,7 +65,6 @@ public class BartApiService {
         return new ArrayList<>();
     }
 
-
     public EstimationDto getEstimationForStation(String station) {
         String url = estimationApiUrl.replace("**ORIG**", station);
         ResponseEntity<EstimationWrapperDto> resp = restTemplate.getForEntity(url, EstimationWrapperDto.class);
@@ -86,7 +85,7 @@ public class BartApiService {
                             for (com.mark.nevexandbart.model.bartapi.EstimationDto e : dw.getEstimate()) {
                                 EstimationEntryDto entry = new EstimationEntryDto();
                                 entry.setDirection(e.getDirection());
-                                // If minutes is null - set it to 0 
+                                // If minutes is null - set it to 0
                                 Integer minutes = e.getMinutes() != null ? e.getMinutes() : 0;
                                 entry.setMinutes(minutes);
                                 entry.setTrainName(dw.getDestination());
@@ -106,7 +105,6 @@ public class BartApiService {
                 estimate.setEntries(finalEntries);
                 return estimate;
             }
-
         }
         return new EstimationDto();
     }

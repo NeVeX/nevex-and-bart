@@ -15,24 +15,11 @@
 
             <input class="input-bart" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>
 
-            <datalist id="stations">
-                <!--<option>-->
-                        <!--&lt;!&ndash;th:each="station : ${all_stations}"&ndash;&gt;-->
-                        <!--&lt;!&ndash;th:attr="data-value=${station.abbreviation}"&ndash;&gt;-->
-                        <!--&lt;!&ndash;th:value="${station.stationName}"&ndash;&gt;-->
+            <datalist id="stations"></datalist>
 
-                <!--</option>-->
-            </datalist>
-
-            <div>
-                <h2 id="origin_station">OriginStation</h2>
-                <div id="all_the_estimates">
-                    <!--<h3>-->
-                        <!--Next <b id="next_train_name_id"></b>-->
-                        <!--train arrives in <b id="train_arrives_id"></b>-->
-                        <!--minutes-->
-                    <!--</h3>-->
-                </div>
+            <div id="estimates_div">
+                <h2 id="origin_station"></h2>
+                <div id="estimate_entries"></div>
             </div>
 
         </div>

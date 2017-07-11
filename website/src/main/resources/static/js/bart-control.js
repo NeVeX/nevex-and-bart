@@ -1,6 +1,9 @@
 
 var STATION_SELECTION_ID = "#stationSelection";
 var STATIONS_ID = "#stations";
+// var ESTIMATE_PARENT_ID = "#estimates_div";
+var ORIGIN_STATION_ID = "#origin_station";
+var ESTIMATE_ENTRIES_ID = "#estimate_entries";
 
 var previousStationAbbreviation = '';
 
@@ -23,6 +26,10 @@ function setupInputListeners() {
 }
 
 function getEstimatesForStation(stationAbbr) {
+
+    $(ESTIMATE_ENTRIES_ID).empty();
+    $(ORIGIN_STATION_ID).text("Getting estimates for "+stationAbbr);
+
     $.ajax({
         type: "GET",
         url: "api/estimates?station="+stationAbbr,
@@ -37,45 +44,50 @@ function getEstimatesForStation(stationAbbr) {
 
 function onNewEstimatesReturned(stationAbbr, estimates) {
 
-    // make sure the same station is still selected
-    if ( stationAbbr === previousStationAbbreviation) {
-        if ( estimates && estimates.entries ) {
-            // Need to sort asc for the time incoming
-            // {"train_name":"SFO/Millbrae","minutes":2,"direction":"South","hex_color":"#ffff33"}
-
-            var estimatesForMinutes = [];
-
-            estimates.entries.forEach(function (est) {
-                if ( estimatesForMinutes.length === 0) {
-                    estimatesForMinutes.push(est); // just add it
-                } else {
-                    // find where to insert this time
-                    var i;
-                    var insertIndex = estimatesForMinutes.length; // by default, set the insert to be last
-                    for ( i = 0; i < estimatesForMinutes.length; i++) {
-                        var arrayEst = estimatesForMinutes[i];
-                        if ( est.minutes <= arrayEst.minutes) {
-                            insertIndex = i;
-                        }
-                    }
-                    estimatesForMinutes.splice(insertIndex, 0, est);
-                }
-            });
-
-            // now just print all the information
-            $("#origin_station").text(estimates.origin_station);
-
-            estimatesForMinutes.forEach(function (est) {
-
-                $("#all_the_estimates").append(
-                    '<h4>Train arrives in ["'+est.minutes+'"]</h4>'
-                );
-
-            });
-
-
-        }
+    if ( stationAbbr != previousStationAbbreviation) {
+        return; // make sure the same station is still selected
     }
+
+    $(ESTIMATE_ENTRIES_ID).empty();
+
+    var estimatesForMinutes = [];
+
+    if ( estimates && estimates.entries && estimates.entries.length > 0 ) {
+        // Need to sort asc for the time incoming
+        // {"train_name":"SFO/Millbrae","minutes":2,"direction":"South","hex_color":"#ffff33"}
+        estimates.entries.forEach(function (est) {
+            if ( estimatesForMinutes.length === 0) {
+                estimatesForMinutes.push(est); // just add it
+            } else {
+                // find where to insert this time
+                var i;
+                var insertIndex = estimatesForMinutes.length; // by default, set the insert to be last
+                for ( i = 0; i < estimatesForMinutes.length; i++) {
+                    var arrayEst = estimatesForMinutes[i];
+                    if ( est.minutes <= arrayEst.minutes) {
+                        insertIndex = i;
+                    }
+                }
+                estimatesForMinutes.splice(insertIndex, 0, est);
+            }
+        });
+    }
+
+    if ( estimatesForMinutes.length > 0 ) {
+        // now just print all the information
+        $(ORIGIN_STATION_ID).text(estimates.origin_station);
+
+        estimatesForMinutes.forEach(function (est) {
+
+            $(ESTIMATE_ENTRIES_ID).append(
+                '<h4>Train arrives in ' + est.minutes + ' minutes</h4>'
+            );
+
+        });
+    } else {
+        $(ORIGIN_STATION_ID).text("There's no estimates available right now")
+    }
+
 }
 
 function getAndSetAllStations() {
