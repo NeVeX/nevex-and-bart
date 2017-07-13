@@ -44,7 +44,8 @@
 
 .bart-form-control {
     margin-top: 15px;
-    width: 10% !important;
+    max-width: 300px !important;
+
 }
 
 .bart-well {

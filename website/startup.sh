@@ -1,0 +1,1 @@
+nohup java -Xmx50M -Xms50M -jar nevex-and-bart-1.2.0.jar &
