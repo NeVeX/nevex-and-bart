@@ -1,6 +1,5 @@
 package com.mark.nevexandbart.ws;
 
-import com.mark.nevexandbart.model.StationsDto;
 import com.mark.nevexandbart.service.BartApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Created by NeVeX on 9/5/2016.
@@ -26,11 +24,7 @@ public class BartViewEndpoint {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String welcome(ModelMap model) {
-//        List<StationsDto> stations = this.bartApiService.getStations();
-//        if ( stations != null ) {
-//            model.addAttribute("all_stations", stations);
-//        }
+    public String welcome() {
         return "bart.html";
     }
 

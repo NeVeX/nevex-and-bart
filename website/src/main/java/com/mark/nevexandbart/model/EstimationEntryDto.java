@@ -3,7 +3,6 @@ package com.mark.nevexandbart.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.util.Comparator;
 
 /**
  * Created by NeVeX on 9/5/2016.

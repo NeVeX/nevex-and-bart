@@ -1,25 +1,59 @@
 
-.main-body {
-    background-image: url(../images/bart_train.jpg);
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    color: white;
-    text-shadow: 2px 2px 0px #000000;
+/*.main-body {*/
+    /*background-image: url(../images/bart_train.jpg);*/
+    /*background-size: cover;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center center;*/
+    /*color: white;*/
+    /*text-shadow: 2px 2px 0px #000000;*/
 
-    background-color:rgba(0, 0, 0, 0.48);
-    margin-top: -15px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: -14px;
-    height: 100%;
+    /*background-color:rgba(0, 0, 0, 0.48);*/
+    /*margin-top: -15px;*/
+    /*margin-left: 0px;*/
+    /*margin-right: 0px;*/
+    /*margin-bottom: -14px;*/
+    /*height: 100%;*/
+/*}*/
+
+/*.input-bart {*/
+    /*font-size: 20px;*/
+    /*height: 25px;*/
+/*}*/
+
+
+.flex-align {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    min-height: 24em;
+    flex-direction: column;
 }
 
-.input-bart {
-    font-size: 20px;
-    height: 25px;
+.flex-align-columns {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+
+.bart-form-control {
+    margin-top: 15px;
+    width: 10% !important;
+}
+
+.bart-well {
+    border-style: solid !important;
+    border-width: thick !important;
+    /*border-color: white !important;*/
+    /*min-width: 50% !important;*/
+    /*max-width: 80% !important;*/
+    width: 100% !important;
+    padding: 10px !important;
+    margin: 10px !important;
 }

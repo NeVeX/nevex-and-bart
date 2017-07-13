@@ -1,11 +1,11 @@
 
 var STATION_SELECTION_ID = "#stationSelection";
 var STATIONS_ID = "#stations";
-// var ESTIMATE_PARENT_ID = "#estimates_div";
 var ORIGIN_STATION_ID = "#origin_station";
 var ESTIMATE_ENTRIES_ID = "#estimate_entries";
 
 var previousStationAbbreviation = '';
+var estimateCountDownIntervals = [];
 
 $(document).ready(function() {
     getAndSetAllStations();
@@ -52,6 +52,13 @@ function onNewEstimatesReturned(stationAbbr, estimates) {
 
     var estimatesForMinutes = [];
 
+    if ( estimateCountDownIntervals.length > 0 ) {
+        var index;
+        for ( index = 0; index < estimateCountDownIntervals.length; index++) {
+            clearInterval(estimateCountDownIntervals[index]);
+        }
+    }
+
     if ( estimates && estimates.entries && estimates.entries.length > 0 ) {
         // Need to sort asc for the time incoming
         // {"train_name":"SFO/Millbrae","minutes":2,"direction":"South","hex_color":"#ffff33"}
@@ -73,22 +80,55 @@ function onNewEstimatesReturned(stationAbbr, estimates) {
         });
     }
 
+    var idCounter = 0;
     if ( estimatesForMinutes.length > 0 ) {
         // now just print all the information
-        $(ORIGIN_STATION_ID).text(estimates.origin_station);
+        $(ORIGIN_STATION_ID).text(estimates.origin_station + ' Station');
 
         estimatesForMinutes.forEach(function (est) {
 
+            var minutesRemaining = est.minutes;
+            var minutesRemainingText = est.minutes;
+            if ( !minutesRemaining || minutesRemaining == 0) {
+                minutesRemainingText = ' is arriving</div>'
+            } else {
+                idCounter++;
+                minutesRemainingText = ' arrives in ~<strong id="est-remaining-'+idCounter+'">'+minutesRemaining+'</strong> minutes</div>';
+            }
+
             $(ESTIMATE_ENTRIES_ID).append(
-                '<h4>Train arrives in ' + est.minutes + ' minutes</h4>'
+                '<div class="well well-lg bart-well" style="border-color: '+est.hex_color+'">'+est.train_name+' train '+minutesRemainingText
             );
 
         });
     } else {
-        $(ORIGIN_STATION_ID).text("There's no estimates available right now")
+        $(ORIGIN_STATION_ID).text("There's no estimates available right now");
+    }
+
+    var counter;
+    for ( counter = 1; counter <= idCounter; counter++) {
+        countDownMinutesForId(counter);
     }
 
 }
+
+function countDownMinutesForId(index) {
+    var newEstimateInterval = setInterval(function () {
+        var element = $("#est-remaining-"+index);
+        var minutesRemaining = element.text();
+        var newText;
+        if ( minutesRemaining > 0 ) {
+            newText = minutesRemaining - 1;
+        } else {
+            newText = 'now';
+            clearInterval(newEstimateInterval);
+        }
+        element.text(newText);
+
+    }, 60000); // every minute
+    estimateCountDownIntervals.push(newEstimateInterval);
+}
+
 
 function getAndSetAllStations() {
 

@@ -5,12 +5,10 @@ import com.mark.nevexandbart.model.EstimationDto;
 import com.mark.nevexandbart.model.EstimationEntryDto;
 import com.mark.nevexandbart.model.StationsDto;
 import com.mark.nevexandbart.model.bartapi.*;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;

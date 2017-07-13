@@ -4,25 +4,38 @@
         <title>Bart</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link type="text/css" href="css/bart.css">
+        <link rel="stylesheet" href="css/bart.css">
+        <link rel="stylesheet" href="css/bootstrap-ext.css">
         <script src="js/jquery-3.1.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script src="js/bart-control.js"></script>
     </head>
 
-    <body class="main-body">
-        <div>
+    <body>
+        <div class="flex-align">
             <h2>O Bart, where art thou?</h2>
 
-            <input class="input-bart" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>
+            <input class="form-control input-sm bart-form-control" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>
 
-            <datalist id="stations"></datalist>
+            <datalist id="stations">
 
-            <div id="estimates_div">
+                <!--<option>Test One</option>-->
+                <!--<option>Test Two</option>-->
+
+            </datalist>
+
+            <div id="estimates_div" class="flex-align-columns">
                 <h2 id="origin_station"></h2>
-                <div id="estimate_entries"></div>
+                <div id="estimate_entries" class="flex-align-columns">
+
+                    <!--<div class="well well-lg bart-well" style="border-color: #ff9933">Warm Springs arrives in ~<strong id="est-remaining-2">18</strong> minutes</div>-->
+
+                </div>
             </div>
 
+
         </div>
+
     </body>
 
 </html>
