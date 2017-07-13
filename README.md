@@ -1,13 +1,4 @@
 # nevex-and-bart
-Making a simple website to show times and information for the BART system
+A simple website and android app to show train estimation times.
 
-##### Release Notes
-
-##### `1.1.0`
-
-* Removed google cloud - going to run this on my raspberry pi now
-* Migrated app to Spring Boot
-
-##### `1.0.0`
-
-* First version - runs on google cloud
+#### See each sub project for individual Readme's and more info
