@@ -15,6 +15,13 @@ public class StationsDto implements Serializable {
     @JsonProperty("abbreviation")
     private String abbreviation;
 
+    public StationsDto() {}
+
+    public StationsDto(String stationName, String abbreviation) {
+        this.stationName = stationName;
+        this.abbreviation = abbreviation;
+    }
+
     public String getStationName() {
         return stationName;
     }

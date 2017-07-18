@@ -12,30 +12,22 @@
     </head>
 
     <body>
+
         <div class="flex-align">
             <h2>O Bart! Where art thou?</h2>
 
-            <input class="form-control input-sm bart-form-control" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>
+            <!--<input class="form-control input-sm bart-form-control" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>-->
 
-            <datalist id="stations">
+            <select class="form-control input-sm bart-form-control" id="stations">
 
-                <!--<option>Test One</option>-->
-                <!--<option>Test Two</option>-->
-
-            </datalist>
+            </select>
 
             <div id="estimates_div" class="flex-align-columns">
                 <h2 id="origin_station"></h2>
-                <div id="estimate_entries" class="flex-align-columns">
-
-                    <!--<div class="well well-lg bart-well" style="border-color: #ff9933">Warm Springs arrives in ~<strong id="est-remaining-2">18</strong> minutes</div>-->
-
-                </div>
+                <div id="estimate_entries" class="flex-align-columns"></div>
             </div>
 
-
         </div>
-
     </body>
 
 </html>

@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
-public class BartApiEndpoint {
+class BartApiEndpoint {
 
     private final BartApiService bartApiService;
 

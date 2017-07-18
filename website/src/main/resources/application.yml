@@ -11,6 +11,10 @@ server:
 
 logging:
   file: log/nevex-and-bart.log
+spring:
+  profiles:
+    active: fake-api-service
+
 
 #spring:
 #  thymeleaf:

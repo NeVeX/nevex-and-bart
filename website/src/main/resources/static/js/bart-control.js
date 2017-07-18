@@ -1,10 +1,10 @@
 
-var STATION_SELECTION_ID = "#stationSelection";
 var STATIONS_ID = "#stations";
 var ORIGIN_STATION_ID = "#origin_station";
 var ESTIMATE_ENTRIES_ID = "#estimate_entries";
 
 var previousStationAbbreviation = '';
+var previousStationName = '';
 var estimateCountDownIntervals = [];
 
 $(document).ready(function() {
@@ -14,21 +14,13 @@ $(document).ready(function() {
 });
 
 function setupInputListeners() {
-
-    $(STATION_SELECTION_ID).keydown(function(event){
-        var keyCode = (event.keyCode ? event.keyCode : event.which);
-        if (keyCode == 13) { // Enter key
-            refreshEstimates();
-        }
-    });
     $(STATIONS_ID).bind('input', refreshEstimates);
-    $(STATION_SELECTION_ID).bind('input', refreshEstimates);
 }
 
-function getEstimatesForStation(stationAbbr) {
+function getEstimatesForStation(stationAbbr, stationName) {
 
     $(ESTIMATE_ENTRIES_ID).empty();
-    $(ORIGIN_STATION_ID).text("Getting estimates for "+stationAbbr);
+    $(ORIGIN_STATION_ID).text("Getting estimates for "+stationName);
 
     $.ajax({
         type: "GET",
@@ -58,6 +50,7 @@ function onNewEstimatesReturned(stationAbbr, estimates) {
             clearInterval(estimateCountDownIntervals[index]);
         }
     }
+    estimateCountDownIntervals = [];
 
     if ( estimates && estimates.entries && estimates.entries.length > 0 ) {
         // Need to sort asc for the time incoming
@@ -73,6 +66,7 @@ function onNewEstimatesReturned(stationAbbr, estimates) {
                     var arrayEst = estimatesForMinutes[i];
                     if ( est.minutes <= arrayEst.minutes) {
                         insertIndex = i;
+                        break;
                     }
                 }
                 estimatesForMinutes.splice(insertIndex, 0, est);
@@ -122,6 +116,19 @@ function countDownMinutesForId(index) {
         } else {
             newText = 'now';
             clearInterval(newEstimateInterval);
+            var indexEst = estimateCountDownIntervals.indexOf(newEstimateInterval);
+            if ( indexEst > -1 ) {
+                estimateCountDownIntervals.splice(indexEst, 0);
+            }
+            setTimeout(function () {
+                element.hide(); // hide the information
+                if ( previousStationAbbreviation && estimateCountDownIntervals.length < 1 ) {
+                    // get more estimates
+                    console.log("Looks like we have removed all estimates - so let's get more");
+                    getEstimatesForStation(previousStationAbbreviation, previousStationName);
+                }
+
+            }, 30000); // 30 seconds
         }
         element.text(newText);
 
@@ -146,9 +153,10 @@ function getAndSetAllStations() {
 }
 
 function refreshStations(stations) {
-    if ( stations ) {
+    if ( stations && stations.length > 0 ) {
+        $(STATIONS_ID).append('<option disabled selected value> -- select a station -- </option>');
         stations.forEach(function (station) {
-            $(STATIONS_ID).append('<option data-abbr="'+station.abbreviation+'" value="'+station.name+'">');
+            $(STATIONS_ID).append($("<option />").val(station.abbreviation).text(station.name));
         });
     } else {
         console.log("No stations received - not able to refresh stations list")
@@ -157,21 +165,19 @@ function refreshStations(stations) {
 
 function refreshEstimates() {
 
-    // Get what is selected
-    var stationSelected = $(STATION_SELECTION_ID).val();
-    if ( !stationSelected ) {
+    var stationName = $(STATIONS_ID+" option:selected").text();
+    var stationAbbreviation = $(STATIONS_ID).val();
+    if ( !stationAbbreviation || !stationName ) {
         return;
     }
-    // Get our special data value (abbr)
-    var stationAbbreviation = $(STATIONS_ID).find('[value="' + stationSelected + '"]').attr('data-abbr');
-    // Nothing to do if they just clicked the same station again
     if ( stationAbbreviation === previousStationAbbreviation) {
         return;
     }
     if ( stationAbbreviation ) {
-        console.log("Getting estimates for station [" + stationSelected + "] with abbreviation [" + stationAbbreviation + "] selected");
+        console.log("Getting estimates for station [" + stationName + "] with abbreviation [" + stationAbbreviation + "] selected");
         previousStationAbbreviation = stationAbbreviation;
-        getEstimatesForStation(stationAbbreviation);
+        previousStationName = stationName;
+        getEstimatesForStation(stationAbbreviation, stationName);
     }
 }
 

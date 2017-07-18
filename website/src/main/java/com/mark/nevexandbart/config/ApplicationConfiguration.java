@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by Mark Cunningham on 6/24/2017.
  */
 @Configuration
-public class ApplicationConfiguration extends WebMvcConfigurerAdapter {
+class ApplicationConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
