@@ -1,60 +1,104 @@
-
-/*.main-body {*/
-    /*background-image: url(../images/bart_train.jpg);*/
-    /*background-size: cover;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center center;*/
-    /*color: white;*/
-    /*text-shadow: 2px 2px 0px #000000;*/
-
-    /*background-color:rgba(0, 0, 0, 0.48);*/
-    /*margin-top: -15px;*/
-    /*margin-left: 0px;*/
-    /*margin-right: 0px;*/
-    /*margin-bottom: -14px;*/
-    /*height: 100%;*/
-/*}*/
-
-/*.input-bart {*/
-    /*font-size: 20px;*/
-    /*height: 25px;*/
-/*}*/
-
-
-.flex-align {
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    min-height: 24em;
-    flex-direction: column;
+html {
+    height: 100%;
 }
 
-.flex-align-columns {
+body {
+    position: relative;
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: -webkit-flex;
     display: flex;
+    flex-flow: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+    padding: 6vw;
+    height: 100%;
     align-content: center;
     flex-direction: column;
 }
 
+
+.loading-indicator {
+    margin-top: 2vw;
+    border: 0.6vw solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #ab2e2c;
+    width: 6vw;
+    height: 6vw;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.flex-align, .error-div, .loading-div, .bart-div, .estimates-div  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bart-div {
+    height: 100%;
+}
+
+.error-div {
+    color: red;
+}
+
+.estimates-div {
+    width: 100%;
+}
 
 .bart-form-control {
-    margin-top: 15px;
-    max-width: 300px !important;
-
+    margin-top: 1.5vw !important;
+    width: 100% !important;
+    height: auto !important;
+    font-size: 3vw !important;
+    padding: 1vw !important;
+    /*max-width: 30vw !important;*/
 }
 
 .bart-well {
     border-style: solid !important;
-    border-width: thick !important;
-    /*border-color: white !important;*/
-    /*min-width: 50% !important;*/
-    /*max-width: 80% !important;*/
+    border-width: 0.4vw !important;
+    min-height: 100%;
     width: 100% !important;
-    padding: 10px !important;
-    margin: 10px !important;
+    padding: 1.6vw !important;
+    margin-top: 2vw;
+    font-size: 3.2vw;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media only screen and (min-width: 768px) {
+
+    body {
+        padding: 60px;
+    }
+
+    .loading-indicator {
+        margin-top: 20px;
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #ab2e2c;
+        width: 60px;
+        height: 60px;
+    }
+
+    .bart-form-control {
+        margin-top: 15px !important;
+        font-size: 15px !important;
+        padding: 3px !important;
+        max-width: 300px;
+    }
+
+    .bart-well {
+        border-width: 2px !important;
+        padding: 10px !important;
+        margin-top: 22px;
+        font-size: 18px;
+    }
+
 }

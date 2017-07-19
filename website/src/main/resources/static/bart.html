@@ -4,27 +4,41 @@
         <title>Bart</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="css/bart.css">
+
         <link rel="stylesheet" href="css/bootstrap-ext.css">
+
         <script src="js/jquery-3.1.0.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bart-control.js"></script>
+        <link rel="stylesheet" href="css/bart.css">
     </head>
 
     <body>
 
-        <div class="flex-align">
+        <div id="loading-div" class="loading-div">
+            <div class="loading-indicator"></div>
+            <h3>Loading...</h3>
+        </div>
+
+        <div id="error-div" class="error-div">
+            <h3>:-(</h3>
+            <h3>An error occurred!</h3>
+            <h3>Maybe try again in a few moments?</h3>
+        </div>
+
+        <div id="bart-div" class="bart-div">
             <h2>O Bart! Where art thou?</h2>
 
-            <!--<input class="form-control input-sm bart-form-control" type="text" placeholder="Enter or select a station" list="stations" id="stationSelection"/>-->
-
-            <select class="form-control input-sm bart-form-control" id="stations">
+            <select class="form-control input-sm bart-form-control" id="stations" title="The list of Bart stations">
 
             </select>
 
-            <div id="estimates_div" class="flex-align-columns">
+            <h3 id="getting_estimates_text"></h3>
+
+            <div id="estimates_div" class="estimates-div">
                 <h2 id="origin_station"></h2>
-                <div id="estimate_entries" class="flex-align-columns"></div>
+                <h5>(Estimates will auto update below)</h5>
+                <div id="estimate_entries" ></div>
             </div>
 
         </div>

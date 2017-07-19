@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Profile("!fake-api-service")
-class BartApiWrapperService {
+class BartApiWrapperService implements BartApiService {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final List<StationsDto> currentStations = new CopyOnWriteArrayList<>();
