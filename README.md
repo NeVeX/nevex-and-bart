@@ -1,6 +1,8 @@
 # nevex-and-bart
 Making a simple website to show times and information for the BART system
 
+##### `1.2.0` is in development
+
 ##### Release Notes
 
 ##### `1.1.0`
